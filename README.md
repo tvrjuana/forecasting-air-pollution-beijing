@@ -12,6 +12,8 @@ Exposure to PM10 (particulate matter) can result in a number of health imapcts r
 
 ## Main Findings
 
+(will add main findings here)
+
 ## The Notebooks
 
 Have four notebooks that include initial exploration of the stations in `district_exploration.ipynb`, the average daily forecasting for all stations in `air_pollution_forecast`, the average weekly forecasting for all stations in `weekly_air_pollution_forecast.ipynb`, and the average weekly forecasting for stations Changping, Dongsi, Huairou, and Wanliu in `station_forecast_main.ipnyb`. `station_forecast_main.ipnyb` is the main notebook.
@@ -53,26 +55,34 @@ For the time series, I tried forecasting both the daily average of PM10 and week
 
 Tried several models such as basic shifts, AR, MA, ARIMA, and SARIMA models. The SARIMA models gave the best AIC scores; however the ARIMA gave the best root mean squared error (RMSE) score. The SARIMA model was the final model because AIC is more important for time series.
 
-![model1](.images/sarima_changping.png)
+![model1](./images/sarima_changping.png)
 
 AIC Score: 1242.464
+<br>
 RMSE: 41.88
 
-![model2](.images/sarima_dongsi.png)
+![model2](./images/sarima_dongsi.png)
 
 AIC Score: 1279.405
+<br>
 RMSE: 54.61
 
-![model3](.images/sarima_huairou.png)
+![model3](./images/sarima_huairou.png)
 
 AIC Score: 1264.071
+<br>
 RMSE: 40.81
 
 
-![model4](.images/sarima_wanliu.png)
+![model4](./images/sarima_wanliu.png)
 
 AIC Score: 1256.048
+<br>
 RMSE: 51.19
+
+## Future Insights
+
+(will add future insights here)
 
 
 ## For More Information

@@ -4,11 +4,16 @@
 
 ## Organizational Objective
 
-The city of Beijing, China is one of the most populous cities in the world with over 21.5 million residents. Due to its economic opportunities, entertainment options, and public commodities - people have flocked to city. Unfortunately this adds to its air pollution problem. Air pollution effects both the environment and humans negatively. The ultimate goal is to accurately forecast the air pollutant PM10 in order for governmental, health, and environmental leaders to take the necessary steps to remedy this problem and improve health for areas like Beijing that struggle with PM10.
+The city of Beijing, China is one of the most populous cities in the world with over 21.5 million residents. Due to its economic opportunities, entertainment options, and public commodities - people have flocked to city. Unfortunately Beijing has a mass air pollution problem.  Air pollutants like particulate matter 10 (PM10) - particles in the air like dust, dirt, and soot, can result in a number of negative health and envionmental impacts.
 
-Exposure to PM10 (particulate matter) can result in a number of health imapcts ranging from coughing and wheezing to asthma attacks and bronchitis to high blood pressure, heart attack, strokes, and premature death. Any level of PM10 is not good but keeping exposure to PM10 concentrations below 54.0 µg/m³ is the best way to prevent any short or long-term health effects from developing. Below a chart of PM10 Air Quality Index.
+Exposure to PM10 can result in a number of health impacts ranging from coughing and wheezing to asthma attacks and bronchitis to high blood pressure, heart attack, strokes, and premature death. Any level of PM10 is not good but keeping exposure to PM10 concentrations below 54.0 µg/m³ is the best way to prevent any short or long-term health effects from developing. Below is a chart of PM10 Air Quality Index.
 
 ![img2](./images/air_quality_index.png)
+
+Therefore UNEP, has tasked me with forecasting air pollutant PM10 in Beijing to obtain a better understanding of what could happen to air quality as more and more cities become densely populated, as well as what can be done to remedy it. 
+
+<b>**Disclaimer**</b>
+This is a <u>HYPOTHETICAL</u> objective. The UNEP <u>did not</u> request this of me.
 
 ## Main Findings
 
@@ -99,11 +104,11 @@ Through outside data gathering of population and district location found that th
 
 ###  NO2 and its relationship with PM10
 
-![scatter](./images/dongsi_NO2.png)
+![scatter](./images/dongsi-NO2.png)
 
 From the plot above can see that air pollutant NO2 had the highest positive correlation with PM10 comapred to other pollutants like carbon monoxide (CO). The highest correlation was with Dongsi which can be see with the correlation heatmap of Wanliu Station below: 
 
-![scatter](./images/wanliu_corr.png)
+![corr](./images/wanliu_corr.png)
 
 Can see that in Wanliu PM10 had a correlation with NO2 of 0.8.
 
@@ -122,7 +127,7 @@ The above chart is for the average weekly PM10 for Changping Station. The charts
 
 ![decompose](./images/wanliu_decompose.png)
 
-Once again the above chart is only for the Changping Station; however, the charts for the other stations showed similar trends, seasonal, and residuals.
+Once again the above chart is only for the Wanliu Station; however, the charts for the other stations showed similar trends, seasonal, and residuals.
 
 <b>Observations</b> 
 - The Observed plot shows the average weekly PM10 values.
@@ -135,36 +140,63 @@ Once again the above chart is only for the Changping Station; however, the chart
 
 For the time series, I tried forecasting both the daily average of PM10 and weekly avergae of PM10. In the end, I decided to go with weekly average for the final model because realistically not much can be done on a day to day basis especially with something as complex as air pollution. However the daily average forecasting can be found [here](./air_pollution_forecast.ipynb)
 
-Tried several models such as basic shifts, AR, MA, ARIMA, and SARIMA models. The SARIMA models gave the best AIC scores; however the ARIMA gave the best root mean squared error (RMSE) score. The SARIMA model was the final model because AIC is more important for time series.
+<b>Evaluation Metric</b>
 
+- Root mean squared error (RMSE): wanted to minimize error in forecasting; get as close to the actual value.
+- Akaike Information Criterion (AIC):  estimates the relative quality of statistical models for a given set of data and takes into account the complexity of a model along with how well a model fits the data
+
+Tried several models such as basic shifts, AR, MA, ARIMA, and SARIMA models. The SARIMA models gave the best AIC scores; however the ARIMA gave the best RMSE score. The SARIMA model was the final model because the AIC score shows how well the model is performing compared to others. Therefore although ARIMA gave a better RMSE, SARIMA models performed better in comparison. 
+
+### Changping Station 
 ![model1](./images/sarima_changping.png)
 
-AIC Score: 1242.464
+AIC Score: 1,242.464
 <br>
-RMSE: 41.88
+RMSE: 41.88 μg/m3
+<br>
+All the test set observation fall within the 95% confidence interval meaning that the true population mean lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 41.88 μg/m3. 
 
+
+### Dongsi Station 
 ![model2](./images/sarima_dongsi.png)
 
-AIC Score: 1279.405
+AIC Score: 1,279.405
 <br>
-RMSE: 54.61
+RMSE: 54.61 μg/m3
+<br>
+All the test set observation fall within the 95% confidence interval meaning that the true population mean  lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 54.61 μg/m3. 
 
+### Huairou Station 
 ![model3](./images/sarima_huairou.png)
 
-AIC Score: 1264.071
+AIC Score: 1,264.071
 <br>
-RMSE: 40.81
+RMSE: 40.81 μg/m3
 
+All the test set observation fall within the 95% confidence interval meaning that the true population lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 40.81 μg/m3.
 
+### Wanliu Station 
 ![model4](./images/sarima_wanliu.png)
 
-AIC Score: 1256.048
+AIC Score: 1,256.048
 <br>
-RMSE: 51.19
+RMSE: 51.19 μg/m3
+
+Most of test set observation fall within the 95% confidence interval except for one outlier at `2017-01` meaning that the true population lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 51.19 μg/m3.
+
+## Conclusion and Recommendations 
+
+In conclusion found that a SARIMA Model gave the best forcasting in terms of AIC score (model performance). The RMSE was better for the ARIMA model; however its AIC score was above 1,700 compared to around the 1,200 for SARIMA. The recommendations that I propose is for:
+
+1. Enforcing emission regulation on industries such as coal mining and chemical plants. Industries that heavily contribute to the air pollutant NO2.
+
+(add more specific recommendations to stations Dongsi and Wanliu)
 
 ## Future Insights
 
-(will add future insights here)
+The future steps that I would like to is to analyze current air pollution trends. Since the pandemic and a stronger movement to electric vehicles how is air pollution now? I would also like to include health data of each district in Beijing. How many people suffer from asthma in these districts? Has asthma rate gotten worse since the really bad year of air pollution in 2012? Finally I would also like to add monitoring equipment to the data, to see if the monitoring equipment is up to date, if they are prone to give misreadings, etc. 
+
+Would also like to deploy this model in a dashboard in Tableau so stay tune for that!
 
 
 ## For More Information
@@ -176,10 +208,10 @@ For any additional questions, please contact **Juana Tavera | tvrjuana@gmail.com
 ```
 ├── README.md                              <- The top-level README for reviewers of this project
 ├── station_forecast_main.ipynb            <- Narrative documentation of analysis in Jupyter notebook
-├── 
+├── district_exploration.ipynb             <- Initial exploration of all stations
+├── air_pollution_forecast.ipynb           <- Daily average forecasting all stations
+├── weekly_air_pollution_forecast.ipynb    <- Weekly average forecasting for all stations 
 ├── presentation.pdf                       <- PDF version of project presentation
 ├── data                                   <- Both sourced externally and generated from code
 └── images                                 <- Both sourced externally and generated from code
 ```
-
-<b>Stakeholder:</b> Ministry of Environmental Protection of the People's Republic of China OR United Nations Environment Programme

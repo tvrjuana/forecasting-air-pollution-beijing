@@ -4,16 +4,13 @@
 
 ## Organizational Objective
 
-The city of Beijing, China is one of the most populous cities in the world with over 21.5 million residents. Due to its economic opportunities, entertainment options, and public commodities - people have flocked to city. Unfortunately Beijing has a mass air pollution problem.  Air pollutants like particulate matter 10 (PM10) - particles in the air like dust, dirt, and soot, can result in a number of negative health and envionmental impacts.
-
-Exposure to PM10 can result in a number of health impacts ranging from coughing and wheezing to asthma attacks and bronchitis to high blood pressure, heart attack, strokes, and premature death. Any level of PM10 is not good but keeping exposure to PM10 concentrations below 54.0 µg/m³ is the best way to prevent any short or long-term health effects from developing. Below is a chart of PM10 Air Quality Index.
+The city of Beijing, China is one of the most populous cities in the world with over 21.5 million residents. Due to its economic opportunities, entertainment options, and public commodities - people have flocked to city. Unfortunately Beijing has a mass air pollution problem.  Air pollutants like particulate matter 10 (PM10) - particles in the air like dust, dirt, and soot, can result in a number of negative health impacts ranging from coughing and wheezing to asthma attacks and bronchitis to high blood pressure, heart attack, strokes, and premature death. Any level of PM10 is not good but keeping exposure to PM10 concentrations below 54.0 µg/m³ is the best way to prevent any short or long-term health effects from developing. Below is a chart of PM10 Air Quality Index.
 
 ![img2](./images/air_quality_index.png)
 
 Therefore UNEP, has tasked me with forecasting air pollutant PM10 in Beijing to obtain a better understanding of what could happen to air quality as more and more cities become densely populated, as well as what can be done to remedy it. 
 
-<b>**Disclaimer**</b>
-This is a <u>HYPOTHETICAL</u> objective. The UNEP <u>did not</u> request this of me.
+#### Disclaimer: This is a HYPOTHETICAL objective. The UNEP did not request this of me.
 
 ## Main Findings
 
@@ -59,7 +56,7 @@ There were 12 stations to begin with, two of them, Aotizhongxin and Wanshouxigon
 
 As mentioned above in the main notebook - `station_forecast_main.ipynb` I chose to explore further the following stations Changping, Dongsi, Huairou, and Wanliu. These stations were chosen based on their district's proximity to the city center. 
 
-To prepare the data for a time series model I set the time columns - `year`, `month`, `day`, and `hour`  to a DateTime data type and set it as the index. I also resampled the dataframes to a weekly average. Before the resampling each dataframe ~35K observations, afterwards had 210.   
+To prepare the data for a time series model I set the time columns - `year`, `month`, `day`, and `hour`  to a DateTime data type and set it as the index. I also resampled the dataframes to a weekly average. Before the resampling each dataframe they had ~35K observations each, afterwards had 210.   
 
 ## Exploratory Data Analysis 
 
@@ -67,7 +64,7 @@ To prepare the data for a time series model I set the time columns - `year`, `mo
 
 Through outside data gathering of population and district location found that the closer to the city center the larger the median value of PM10 concentration. The highest being Wanliu and Dongsi Station - 102.9 and and 102.5 respectively. Also found that population doesn't have much to do with the concentration of PM10. Below is a map of the districts of city of Beijing. Wanliu and Dongsi are located in the Haidan and Dongsheng districts respectively. 
 
-![img3](./images/beijing-districts.jpeg)
+<img src="images/beijing-districts.jpeg" alt="Districts" style="width: 500px;"/>
 
 <table>
   <tr>
@@ -106,7 +103,7 @@ Through outside data gathering of population and district location found that th
 
 ![scatter](./images/dongsi-NO2.png)
 
-From the plot above can see that air pollutant NO2 had the highest positive correlation with PM10 comapred to other pollutants like carbon monoxide (CO). The highest correlation was with Dongsi which can be see with the correlation heatmap of Wanliu Station below: 
+From the plot above can see that air pollutant NO2 had the highest positive correlation with PM10 compared to other pollutants like carbon monoxide (CO). NO2 is caused by the burning of fossil fuels like coal mining and chemical plants. These industries can be found in nearby districts of Beijing, such as the Changping and Fangshang districts. The highest correlation was with Wanliu which can be see with the correlation heatmap of Wanliu Station below: 
 
 ![corr](./images/wanliu_corr.png)
 
@@ -117,8 +114,7 @@ Can see that in Wanliu PM10 had a correlation with NO2 of 0.8.
 ![line](./images/changping_line.png)
 
 The above chart is for the average weekly PM10 for Changping Station. The charts for the other stations Dongsi, Huairou, and Wanliu were similar.
-
-<b>Observations</b> 
+ 
 - There are no obvious patterns in the PM10 time series plot.
 - There does not appear to be a general trend increasing or decreasing.
 - There may be a seasonal variation where there are some spikes. For example in 2016 for Changping, Dongsi, and Wanliu there was a spike in beginning of 2016 because there was a red alert issued from previous severe smog.
@@ -145,7 +141,11 @@ For the time series, I tried forecasting both the daily average of PM10 and week
 - Root mean squared error (RMSE): wanted to minimize error in forecasting; get as close to the actual value.
 - Akaike Information Criterion (AIC):  estimates the relative quality of statistical models for a given set of data and takes into account the complexity of a model along with how well a model fits the data
 
-Tried several models such as basic shifts, AR, MA, ARIMA, and SARIMA models. The SARIMA models gave the best AIC scores; however the ARIMA gave the best RMSE score. The SARIMA model was the final model because the AIC score shows how well the model is performing compared to others. Therefore although ARIMA gave a better RMSE, SARIMA models performed better in comparison. 
+Tried several models such as basic shifts, AR, MA, ARIMA, and SARIMA models. I plotted the Partial Autocorrelation chart and Autocorrelation chart in order to tune the ARIMA models. In the end the SARIMA models gave the best AIC scores while the ARIMA gave the best RMSE score. The SARIMA model was the final model because the AIC score shows how well the model is performing compared to others. Therefore although ARIMA gave a better RMSE, SARIMA models performed better in comparison. Below is the PACF and ACF charts for the Wanliu Station: 
+
+![pacf](./images/pacf_wanliu.png)
+<br>
+![pacf](./images/acf_wanliu.png)
 
 ### Changping Station 
 ![model1](./images/sarima_changping.png)
@@ -154,7 +154,7 @@ AIC Score: 1,242.464
 <br>
 RMSE: 41.88 μg/m3
 <br>
-All the test set observation fall within the 95% confidence interval meaning that the true population mean lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 41.88 μg/m3. 
+The model performed fairly well for the Changping Station, all the observations are within the 95% confidence interval; meaning that 95% of the time the true population mean will fall within that shaded grey area and and a 5% chance that it will not. The standard deviation for PM10 in Changping was 41.12 μg/m3 with the RMSE for SARIMA being 41.88 μg/m3 which is only slightly above it.
 
 
 ### Dongsi Station 
@@ -164,7 +164,7 @@ AIC Score: 1,279.405
 <br>
 RMSE: 54.61 μg/m3
 <br>
-All the test set observation fall within the 95% confidence interval meaning that the true population mean  lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 54.61 μg/m3. 
+The model performed fairly well for the Dongsi station, all the observations are within the 95% confidence interval; meaning that 95% of the time the true population mean will fall within the shaded grey area and and a 5% chance that it will not. The standard deviation for PM10 in Dongsi was 47.06 μg/m3 with the RMSE for SARIMA being 54.6 μg/m3. The RMSE was 7.54 μg/m3 above it. 
 
 ### Huairou Station 
 ![model3](./images/sarima_huairou.png)
@@ -173,7 +173,7 @@ AIC Score: 1,264.071
 <br>
 RMSE: 40.81 μg/m3
 
-All the test set observation fall within the 95% confidence interval meaning that the true population lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 40.81 μg/m3.
+The model performed fairly well for the Huairou station, all the observations are within the 95% confidence interval; meaning that 95% of the time the true population mean will fall within the shaded grey area and and a 5% chance that it will not. The standard deviation for PM10 in Huairou was 40.45 μg/m3 with the RMSE for SARIMA being 40.81 μg/m3 which is only slightly above it. 
 
 ### Wanliu Station 
 ![model4](./images/sarima_wanliu.png)
@@ -182,19 +182,23 @@ AIC Score: 1,256.048
 <br>
 RMSE: 51.19 μg/m3
 
-Most of test set observation fall within the 95% confidence interval except for one outlier at `2017-01` meaning that the true population lies within (interval here) and a 5% chance that it does not lie within that range. On average it was off by 51.19 μg/m3.
+The model performed fairly well for the Wanliu station, most of the observations are within the 95% confidence interval except for one at `2017-01`. The standard deviation for PM10 in Wanliu was 45.45 μg/m3 with the RMSE for SARIMA being 51.19 μg/m3 which is 5.74 μg/m3 above it. 
 
 ## Conclusion and Recommendations 
 
-In conclusion found that a SARIMA Model gave the best forcasting in terms of AIC score (model performance). The RMSE was better for the ARIMA model; however its AIC score was above 1,700 compared to around the 1,200 for SARIMA. The recommendations that I propose is for:
+In conclusion found that a SARIMA Model gave the best forcasting in terms of AIC score (model performance). The RMSE was better for the ARIMA model; however its AIC score was above 1,700 compared to around the 1,200 for SARIMA. I also found that there is a very strong positive correlation between the feature NO2 and target variable PM10. Finally, the air pollution is on a overall decline in Beijing. 
 
-1. Enforcing emission regulation on industries such as coal mining and chemical plants. Industries that heavily contribute to the air pollutant NO2.
-
-(add more specific recommendations to stations Dongsi and Wanliu)
+The recommendations I would give to the UNEP are:
+1. SARIMA models provide the best forecasting.
+2. Implement a similar program for districts in Beijing such as the Toxics Release Inventory Program here in the United States - where industrial and federal facilities report their pollution prevention activities will encourage industries that contribute heavily to air pollution in becoming more sustainable and environmentally friendly.
+3. The UNEP should team up with big tech industries, like Xiaomi who reside in the Haidian district, and plan to take necessary steps towards carbon neutrality through the way they manufacture their products. 
 
 ## Future Insights
 
-The future steps that I would like to is to analyze current air pollution trends. Since the pandemic and a stronger movement to electric vehicles how is air pollution now? I would also like to include health data of each district in Beijing. How many people suffer from asthma in these districts? Has asthma rate gotten worse since the really bad year of air pollution in 2012? Finally I would also like to add monitoring equipment to the data, to see if the monitoring equipment is up to date, if they are prone to give misreadings, etc. 
+Some of the future steps that I would like to take is to analyze current trends on air pollution. As mentioned above air pollution is on the overall decline in Beijing; therefore I would like to see if that trend continued amongst the pandemic, movement towards electric vehicles, and enviornmental laws that China has enacted more recently. 
+
+I would also like to add health data from the districts in which the station were located such as how many people have asthma and if that number has grown over the years. And finally I would also like to add the monitoring equipment data such as how old is it and if it is prone to give misreadings. 
+
 
 Would also like to deploy this model in a dashboard in Tableau so stay tune for that!
 

@@ -153,7 +153,7 @@ Tried several models such as basic shifts, AR, MA, ARIMA, and SARIMA models. I p
 AIC Score: 1,242.464
 <br>
 RMSE: 41.88 μg/m3
-<br>
+
 The model performed fairly well for the Changping Station, all the observations are within the 95% confidence interval; meaning that 95% of the time the true population mean will fall within that shaded grey area and and a 5% chance that it will not. The standard deviation for PM10 in Changping was 41.12 μg/m3 with the RMSE for SARIMA being 41.88 μg/m3 which is only slightly above it.
 
 
@@ -163,7 +163,7 @@ The model performed fairly well for the Changping Station, all the observations 
 AIC Score: 1,279.405
 <br>
 RMSE: 54.61 μg/m3
-<br>
+
 The model performed fairly well for the Dongsi station, all the observations are within the 95% confidence interval; meaning that 95% of the time the true population mean will fall within the shaded grey area and and a 5% chance that it will not. The standard deviation for PM10 in Dongsi was 47.06 μg/m3 with the RMSE for SARIMA being 54.6 μg/m3. The RMSE was 7.54 μg/m3 above it. 
 
 ### Huairou Station 

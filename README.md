@@ -204,7 +204,7 @@ Would also like to deploy this model in a dashboard in Tableau so stay tune for 
 
 
 ## For More Information
-Please review the full analysis in the [main Jupyter Notebook](./station_forecasting_main.ipnyb) or the [presentation](./presentation.pdf).
+Please review the full analysis in the [main Jupyter Notebook](./station_forecasting_main.ipnyb) or the [presentation](./forecasting_air_pollution_presentation.pdf).
  
 For any additional questions, please contact **Juana Tavera | tvrjuana@gmail.com
  

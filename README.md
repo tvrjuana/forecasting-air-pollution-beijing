@@ -210,12 +210,12 @@ For any additional questions, please contact **Juana Tavera | tvrjuana@gmail.com
  
 ## Repository Structure
 ```
-├── README.md                              <- The top-level README for reviewers of this project
-├── station_forecast_main.ipynb            <- Narrative documentation of analysis in Jupyter notebook
-├── district_exploration.ipynb             <- Initial exploration of all stations
-├── air_pollution_forecast.ipynb           <- Daily average forecasting all stations
-├── weekly_air_pollution_forecast.ipynb    <- Weekly average forecasting for all stations 
-├── presentation.pdf                       <- PDF version of project presentation
-├── data                                   <- Both sourced externally and generated from code
-└── images                                 <- Both sourced externally and generated from code
+├── README.md                                 <- The top-level README for reviewers of this project
+├── station_forecasting_main.ipynb            <- Narrative documentation of analysis in Jupyter notebook
+├── district_exploration.ipynb                <- Initial exploration of all stations
+├── air_pollution_forecast.ipynb              <- Daily average forecasting all stations
+├── weekly_air_pollution_forecast.ipynb       <- Weekly average forecasting for all stations 
+├── presentation.pdf                          <- PDF version of project presentation
+├── data                                      <- Both sourced externally and generated from code
+└── images                                    <- Both sourced externally and generated from code
 ```

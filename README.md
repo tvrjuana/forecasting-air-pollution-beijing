@@ -42,7 +42,7 @@ Have four notebooks in total.
 3. [Weekly Average Forecast](./weekly_air_pollution_forecast.ipynb). It includes:
     - All that was done in Daily Average Forecast but with weekly.
 
-4. [Main Notebook](./station_forecast_main.ipynb). It includes:
+4. [Main Notebook](./station_forecasting_main.ipynb). It includes:
     - All that was done in Weekly Average with 4 stations instead.
     - 4 stations that were narrowed downed based on location and population of district.
     - More modeling of ARIMA tuned by ACF & PACF charts.
@@ -54,7 +54,7 @@ Have four notebooks in total.
 
 There were 12 stations to begin with, two of them, Aotizhongxin and Wanshouxigong,  are not located within Beijing and Dingling which is also located in the Changping District. Therefore did not do any forecasting with these stations and they were only explored in [All Stations Exploration](./district_exploration.ipynb) notebook. 
 
-As mentioned above in the main notebook - `station_forecast_main.ipynb` I chose to explore further the following stations Changping, Dongsi, Huairou, and Wanliu. These stations were chosen based on their district's proximity to the city center. 
+As mentioned above in the main notebook - `station_forecasting_main.ipynb` I chose to explore further the following stations Changping, Dongsi, Huairou, and Wanliu. These stations were chosen based on their district's proximity to the city center. 
 
 To prepare the data for a time series model I set the time columns - `year`, `month`, `day`, and `hour`  to a DateTime data type and set it as the index. I also resampled the dataframes to a weekly average. Before the resampling each dataframe they had ~35K observations each, afterwards had 210.   
 
@@ -204,7 +204,7 @@ Would also like to deploy this model in a dashboard in Tableau so stay tune for 
 
 
 ## For More Information
-Please review the full analysis in the [main Jupyter Notebook](./station_forecast_main.ipnyb) or the [presentation](./presentation.pdf).
+Please review the full analysis in the [main Jupyter Notebook](./station_forecasting_main.ipnyb) or the [presentation](./presentation.pdf).
  
 For any additional questions, please contact **Juana Tavera | tvrjuana@gmail.com
  
